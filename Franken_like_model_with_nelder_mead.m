@@ -89,8 +89,8 @@ dt=1/(60*60/epoch_length);  % assuming  t is in hours
 % COMPUTING LOOP
 % use the nelder_mead algorithm to find the global minimum error
 % fminsearch uses Nelder-Mead
-initial_guess_delta = [2 2 ];     % one starting guess
-initial_guess_lactate = [0.3 0.3 ];
+initial_guess_delta = [2 2];     % one starting guess
+initial_guess_lactate = [0.3 0.3];
 
 if strcmp(signal,'delta1') || strcmp(signal,'delta2') || strcmp(signal,'EEG1') || strcmp(signal,'EEG2')
   [bestparams,best_error] = fminsearch(@(p) myobjectivefunction(signal,t_mdpt_indices,data_at_SWS_midpoints, ...
@@ -103,11 +103,10 @@ if strcmp(signal,'lactate')
 end
 best_tau_i = bestparams(1);
 best_tau_d = bestparams(2);
-best_tau_ar= bestparams(3);
-best_tau_d = bestparams(4);
 
 
-Ti=best_tau_ar;
+
+Ti=best_tau_i;
 Td=best_tau_d;
 
 

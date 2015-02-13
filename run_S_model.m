@@ -129,7 +129,7 @@ S = zeros(1,size(dataset,1)-(window_length*(60*60/epoch_length)));
   
  
     for i=1:size(dataset,1)-(window_length*(60*60/epoch_length)+1)
-      if dataset(i+(window_length/2)*(60*60/epoch_length),1)==0 || dataset(i+(window_length/2)*(60*60/epoch_length),1)==2 || dataset(i+(window_length/2)*(60*60/epoch_length),1)==4 ||   %wake,REMS, or active wake 
+      if dataset(i+(window_length/2)*(60*60/epoch_length),1)==0 || dataset(i+(window_length/2)*(60*60/epoch_length),1)==2 || dataset(i+(window_length/2)*(60*60/epoch_length),1)==4    %wake,REMS, or active wake 
         S(i+1)=UA(i)-(UA(i)-S(i))*exp_rise;
         if S(i+1) > UA(i+1)
           S(i+1) = UA(i+1);
