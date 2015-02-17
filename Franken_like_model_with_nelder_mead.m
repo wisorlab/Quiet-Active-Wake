@@ -160,18 +160,18 @@ if strcmp(signal,'delta1') || strcmp(signal,'delta2') || strcmp(signal,'EEG1') |
     active_wake_lactate = datafile(only_active_wake_indices,2);
 
 
-    scatter(t(only_wake_indices),wake_lactate,25,'r')
+    scatter(t(only_wake_indices),wake_lactate,25,'rd')
       
     hold on
-    scatter(t(only_sleep_indices),sleep_lactate,25,'k')
-    scatter(t(only_rem_indices),rem_lactate,25,'c')
-    scatter(t(only_quiet_wake_indices),quiet_wake_lactate,25,'m')
-    scatter(t(only_active_wake_indices),active_wake_lactate,25,'g')
+    scatter(t(only_sleep_indices),sleep_lactate,25,'b+')
+    scatter(t(only_rem_indices),rem_lactate,25,'rx')
+    scatter(t(only_quiet_wake_indices),quiet_wake_lactate,25,'bs')
+    scatter(t(only_active_wake_indices),active_wake_lactate,25,'ro')
     
    %tS=t(361:end-(60*60/epoch_length));
     tS=t((window_length/2)*(60*60/epoch_length)+1:end-(window_length/2)*(60*60/epoch_length));
     
-    plot(tS,best_S,'b')
+    plot(tS,best_S,'k')
     plot(tS,LA,'k--')
     plot(tS,UA,'k--')
     hold off
@@ -199,17 +199,17 @@ if strcmp(signal,'delta1') || strcmp(signal,'delta2') || strcmp(signal,'EEG1') |
     active_wake_lactate_scaled=scaled_lactate_data(only_active_wake_indices_L);
 
 
-    scatter(tS(only_wake_indices_L),wake_lactate_scaled,25,'r')
+    scatter(tS(only_wake_indices_L),wake_lactate_scaled,25,'rd')
     hold on
-    scatter(tS(only_sleep_indices_L),sleep_lactate_scaled,25,'k')
-    scatter(tS(only_rem_indices_L),rem_lactate_scaled,25,'c')
-    scatter(tS(only_quiet_wake_indices_L),quiet_wake_lactate_scaled,25,'m')
-    scatter(tS(only_active_wake_indices_L),active_wake_lactate_scaled,25,'g')
+    scatter(tS(only_sleep_indices_L),sleep_lactate_scaled,25,'b+')
+    scatter(tS(only_rem_indices_L),rem_lactate_scaled,25,'rx')
+    scatter(tS(only_quiet_wake_indices_L),quiet_wake_lactate_scaled,25,'bs')
+    scatter(tS(only_active_wake_indices_L),active_wake_lactate_scaled,25,'ro')
 
     scaled_L = ((UA-LA)-(UA-best_S))./(UA-LA);
     %plot(tS,scaled_lactate_data,'ro')
     
-    plot(tS,scaled_L,'b')
+    plot(tS,scaled_L,'k')
     hold off
     ylabel('Lactate (scaled)')
     xlabel('Time (hours)')
