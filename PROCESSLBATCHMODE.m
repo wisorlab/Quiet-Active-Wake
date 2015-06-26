@@ -22,7 +22,7 @@ function [signal_data,state_data,residual,best_S,UppA,LowA,dynamic_range,Timer,T
 %  
 % OUTPUTS:
 % signal_data: a cell array containing vectors of either delta power or lactate, one for each file in the directory
-% state_data: a cell array containing vectors of the sleep state (0,1, or 2) for each file in the directory
+% state_data: a cell array containing vectors of the sleep state (0,1,2,3,4) for each file in the directory
 % residual:   a vector containing a vector of mean sum of squares error between best fit and data for each file in the directory
 % best_S:  a cell array containing the best fit curve S, one for each file in the directory
 % UppA:    upper asymptote
@@ -184,7 +184,9 @@ window_length = 4;      % length of moving window used to compute UA and LA if s
     onetotwo(i)=~isempty(strfind(HeadChars(i,:),'1-2 '));
     EMG(i)=~isempty(strfind(HeadChars(i,:),'EMG'));
   end
-    
+  fclose('all');   %close all the files
+
+
   EEG1_1to2Hzcolumn = intersect(find(EEG1),find(onetotwo))-2; % subtract 2 to account for the fact that the first two columns are timestamp and lactate
   EEG2_1to2Hzcolumn = intersect(find(EEG2),find(onetotwo))-2;
   EMG_column = find(EMG)-2;

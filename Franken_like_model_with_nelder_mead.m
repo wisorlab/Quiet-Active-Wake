@@ -160,13 +160,17 @@ if strcmp(signal,'delta1') || strcmp(signal,'delta2') || strcmp(signal,'EEG1') |
     active_wake_lactate = datafile(only_active_wake_indices,2);
 
 
-    scatter(t(only_wake_indices),wake_lactate,25,'rd')
-      
+    scatterPoints1=transparentScatter(t(only_wake_indices)',wake_lactate,0.1,0.05)
+    set(scatterPoints1,'FaceColor',[1,0,0]);
     hold on
-    scatter(t(only_sleep_indices),sleep_lactate,25,'b+')
-    scatter(t(only_rem_indices),rem_lactate,25,'rx')
-    scatter(t(only_quiet_wake_indices),quiet_wake_lactate,25,'bs')
-    scatter(t(only_active_wake_indices),active_wake_lactate,25,'ro')
+    scatterPoints2=transparentScatter(t(only_sleep_indices)',sleep_lactate,0.1,0.05)
+    set(scatterPoints2,'FaceColor',[1,1,1]);
+    scatterPoints3=transparentScatter(t(only_rem_indices)',rem_lactate,0.1,0.05)
+    set(scatterPoints3,'FaceColor',[0,1,0]);
+    scatterPoints4=transparentScatter(t(only_quiet_wake_indices)',quiet_wake_lactate,0.1,0.05)
+    set(scatterPoints4,'FaceColor',[0,0,1]);
+    scatterPoints5=transparentScatter(t(only_active_wake_indices)',active_wake_lactate,0.1,0.05)
+    set(scatterPoints5,'FaceColor',[0.5,0.5,0.5]);
     
    %tS=t(361:end-(60*60/epoch_length));
     tS=t((window_length/2)*(60*60/epoch_length)+1:end-(window_length/2)*(60*60/epoch_length));
@@ -203,8 +207,8 @@ if strcmp(signal,'delta1') || strcmp(signal,'delta2') || strcmp(signal,'EEG1') |
     hold on
     scatter(tS(only_sleep_indices_L),sleep_lactate_scaled,25,'b+')
     scatter(tS(only_rem_indices_L),rem_lactate_scaled,25,'rx')
-    scatter(tS(only_quiet_wake_indices_L),quiet_wake_lactate_scaled,25,'bs')
     scatter(tS(only_active_wake_indices_L),active_wake_lactate_scaled,25,'ro')
+    scatter(tS(only_quiet_wake_indices_L),quiet_wake_lactate_scaled,25,'bs')
 
     scaled_L = ((UA-LA)-(UA-best_S))./(UA-LA);
     %plot(tS,scaled_lactate_data,'ro')
